@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
-from .models import DarbuListas
+from .models import DarbuListas, DarboDuomenys
 
 # from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -10,7 +10,7 @@ class VisuDarbuListai(ListView):
     template_name = 'home.html'
 
     def get_queryset(self):
-        return DarbuListas.objects.filter(user=self.request.user)
+        return DarbuListas.objects.all()
 
 def list(request, id):
     list = DarbuListas.objects.get(id=id)
