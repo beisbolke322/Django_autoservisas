@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% block content %} 
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Detalių sąrašas</th>
+        </tr>
+      </thead>
+    <tbody>
+        {% for item in uzsakymai_list %}
+            <tr>
+              <th><a href="{{item.id}}">{{item.dalis}}</a></th>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+{% endblock content %}
