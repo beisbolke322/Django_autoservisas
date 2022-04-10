@@ -8,12 +8,19 @@
         </tr>
       </thead>
     <tbody>
-        {% for item in uzsakymai_list %}
+        {% for item in x %}
             <tr>
-              <th><a href="{{item.id}}">{{item.dalis}}</a></th>
+              <th>{{item.dalis}}</th>
             </tr>
         {% endfor %}
         </tbody>
 </table>
+<form method="post" action="#">
+  {% csrf_token %}
+  <div class="card-footer" style="display: flex">
+    <input type="text" class="form-control me-1" placeholder="Nauja detalė" aria-label="Nauja užduotis į sąrašą" aria-describedby="button-addon2" name="new">
+    <button class="btn btn-success" type="submit" id="button-addon2" name="add" value="add">+</button>
+  </div>
+</form>
 
 {% endblock content %}
