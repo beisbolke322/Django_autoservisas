@@ -4,16 +4,23 @@
 <table class="table table-striped">
     <thead>
         <tr>
-          <th scope="col">Darbų sąrašas</th>
+          <th scope="col">Darbų rinkinių sąrašas</th>
         </tr>
-      </thead>
+    </thead>
     <tbody>
         {% for item in darbulistas_list %}
             <tr>
               <th><a href="{{item.id}}">{{item.title}}</a></th>
             </tr>
         {% endfor %}
-        </tbody>
+    </tbody>
 </table>
+<form method="post" action="#">
+  {% csrf_token %}
+  <div class="card-footer" style="display: flex">
+    <input type="text" class="form-control me-1" placeholder="Naujas darbų rinkinys" aria-label="Nauja užduotis į sąrašą" aria-describedby="button-addon2" name="newT">
+    <button class="btn btn-success" type="submit" id="button-addon2" name="add" value="add">+</button>
+  </div>
+</form>
 
 {% endblock content %}

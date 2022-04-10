@@ -19,7 +19,7 @@ class DarboDuomenys(models.Model):
     modelis = models.CharField("A_modelis", max_length=20, help_text="Automobilio modelis")
     sav = models.CharField("A_sav", max_length=70, help_text="Automobilio savininko vardas, pavardė")
     suged = models.CharField("A_sugedimai", max_length=200, help_text="Automobilio sugedimai/pakeitimai")
-    isCompleted = models.BooleanField()
+    isCompleted = models.BooleanField(default=False)
     list = models.ForeignKey(DarbuListas, on_delete=models.CASCADE)
     
     class Meta:

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views.generic.list import ListView
 from django.views import View
-from .models import UzsakymuListas, Uzsakymai
+from .models import Uzsakymai
 
 # from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -15,7 +14,6 @@ class VisiUzsakymai(View):
         return render(request, self.template_name, {'x': x})
     
     def post(self, request, *args, **kwargs):
-        # print(request.POST.get('new'))
         new = Uzsakymai(dalis=request.POST.get('new'))
         new.save()
         x = Uzsakymai.objects.all()
