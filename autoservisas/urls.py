@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('registracija.urls')),
     path('uzsakymai/', include('uzsakymai.urls')),
+    path('ppong/', ping_pong.as_view()),
 ]
