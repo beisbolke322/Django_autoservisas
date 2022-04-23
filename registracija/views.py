@@ -12,13 +12,14 @@ class VisuDarbuListai(ListView):
     def get_queryset(self):
         return DarbuListas.objects.all()
 
+''' padaryti, kad išeitų pridėti list'us
     # def list(request, id):
     #     if request.method == "POST":
     #         print(request.POST)
 
     #         if request.POST.get('add'):
     #             title = request.POST.get('newT')
-    #             if len(title) > 0:
+    #             if len(title) > 5:
     #                 DarbuListas.create(title=title)
     #             else:
     #                 print("Užduoties tekstas per trumpas")
@@ -29,8 +30,8 @@ class VisuDarbuListai(ListView):
     #                 if str(item.id) == id_to_delete:
     #                     item.delete()
     #             return redirect('list', id=id)
-    #     return render(request, 'darbai.html')
-
+    #     return render(request, 'home.html')
+'''
 
 ########################################### automobiliai sąraše ###########################################
 

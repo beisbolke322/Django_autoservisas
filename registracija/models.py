@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class DarbuListas(models.Model):
     title = models.CharField("Pavadinimas", max_length=100, help_text="Pavadink šitą darbų seką kaip nors originaliai")
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    # user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Darbu listas'
