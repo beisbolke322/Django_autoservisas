@@ -12,7 +12,7 @@ class DarbuListas(models.Model):
 
     def __str__(self):
         return self.title
-        return self.user
+        # return self.user
 
 class DarboDuomenys(models.Model):
     marke = models.CharField("A_marke", max_length=30, help_text="Automobilio markė")

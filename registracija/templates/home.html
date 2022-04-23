@@ -5,11 +5,11 @@
     <thead>
         <tr>
           <th scope="col">Darbų rinkinių sąrašas</th>
-          <th scope="col" class="delete-styles">Trinti</th>
+          <th scope="col" class="delete-styles">Ištrinti</th>
         </tr>
     </thead>
     <tbody>
-        {% for item in darbulistas_list %}
+        {% for item in x %}
             <tr>
               <th><a href="{{item.id}}">{{item.title}}</a></th>
               <th>
