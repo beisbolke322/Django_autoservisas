@@ -19,18 +19,16 @@ class VisiUzsakymai(View):
         x = Uzsakymai.objects.all()
         return render(request, self.template_name, {'x': x})
         
-# nereikalinga, bet netrinti
-def list(request, id):
-    list = Uzsakymai.objects.get(id=id)
-    if request.method == "POST":
-        print(request.POST)
-
-    if request.POST.get('add'):
-        text = request.POST.get('new')
-        if len(text) > 0:
-            list.uzsakymai_set.create(text=text, uzsakyta=False)
+    def list(request, id):
+        list = Uzsakymai.objects.get(id=id)
+        new_u = Uzsakymai(uzsakyta=request.POST.get('uzsak'))
+        checked = request.POST.getlist('checkbox')
+        for item in list.uzsakymai_set.all():
+            if str(item.id) in checked:
+                item.uzsakyta = True
+            else:
+                item.uzsakyta = False
+            new_u.save()
         else:
-            print("Detales pavadinimas per trumpas")
-    else:
-        context = {"title":f"{list.title}","items": list.uzsakymai_set.all() }
-        return render(request, 'uzsakymai.html', context=context)
+            context = {"title":f"{list.title}","items": list.uzsakymai_set.all() }
+            return render(request, self.template_name)
