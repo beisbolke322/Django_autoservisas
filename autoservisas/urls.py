@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
 
+from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('registracija.urls')),
     path('uzsakymai/', include('uzsakymai.urls')),
-    path('ppong/', ping_pong.as_view()),
+    path('ppong/', ),
 ]
