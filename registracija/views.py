@@ -68,3 +68,6 @@ def list(request, id):
     else:
         context = {"title":"{list.title}","items": list.darboduomenys_set.all() }
     return render(request, 'darbai.html', context=context)
+
+def ppong(request):
+    return render(request, 'ping_pong.html')
