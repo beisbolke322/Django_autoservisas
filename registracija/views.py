@@ -57,3 +57,5 @@ def list(request, id):
         context = {"title":f"{list.title}","items": list.darboduomenys_set.all(), 'sortedsav': isrikiuoti_duomenys}
     return render(request, 'darbai.html', context=context)
 
+def ppong(request):
+    return render(request, 'ping_pong.html')
