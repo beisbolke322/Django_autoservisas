@@ -26,6 +26,7 @@
                 <a class="navbar-brand" href="/">(logo)</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">Darbai</a>
                         </li>
@@ -35,6 +36,17 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/ppong" target="_blank">Ping pong žaidimas</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{%url 'logout'%}" >Atsijungti</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/ppong" target="_blank">Ping pong žaidimas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{%url 'login'%}" >Prisijungimas/ Registracija</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>  
