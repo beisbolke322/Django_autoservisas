@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'registracija',
     'uzsakymai',
-    'crispy_forms',
+    # 'crispy_forms',
 ]
 
 MIDDLEWARE = [
