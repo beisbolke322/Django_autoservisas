@@ -19,16 +19,15 @@ class VisiUzsakymai(View):
         x = Uzsakymai.objects.all()
         return render(request, self.template_name, {'x': x})
         
-    def list(request, id):
-        list = Uzsakymai.objects.get(id=id)
-        new_u = Uzsakymai(uzsakyta=request.POST.get('uzsak'))
-        checked = request.POST.getlist('checkbox')
-        for item in list.uzsakymai_set.all():
-            if str(item.id) in checked:
-                item.uzsakyta = True
-            else:
-                item.uzsakyta = False
-            new_u.save()
+def list(request, id):
+    list = Uzsakymai.objects.get(id=id)
+    new_u = Uzsakymai(uzsakyta=request.POST.get('uzsak'))
+    checked = request.POST.getlist('checkbox')
+    print(uzsakyta=request.POST.get('uzsak'))
+    for item in list.uzsakymai_set.all():
+        if str(item.id) in checked:
+            item.uzsakyta = True
         else:
-            context = {"title":f"{list.title}","items": list.uzsakymai_set.all() }
-            return render(request, self.template_name)
+            item.uzsakyta = False
+        new_u.save()
+       
