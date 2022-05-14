@@ -18,14 +18,14 @@ class VisiUzsakymai(View):
             x = Uzsakymai.objects.all()
             return render(request, self.template_name, {'x': x})
         elif request.POST.get('submit') == 'uzsak':
-            print(request.POST)
+            # print(request.POST)
 
             new_u = Uzsakymai(uzsakyta=request.POST.get('uzsak'))
             checked = request.POST.getlist('checkbox')
             for id in checked:
                 id = int(id)
             list = Uzsakymai.objects.get(id=id)
-            print(Uzsakymai.objects.all(), "+++", id)
+            # print(Uzsakymai.objects.all(), "+++", id)
             for item in list.objects.all():
                 if str(item.id) in checked:
                     item.uzsakyta = True
@@ -33,6 +33,6 @@ class VisiUzsakymai(View):
                     item.uzsakyta = False
                 new_u.save()
             x = Uzsakymai.objects.all()
-            print(x)
+            #print(x)
             return render(request, self.template_name, {'x': x})
         
