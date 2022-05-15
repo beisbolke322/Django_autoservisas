@@ -8,7 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class VisuDarbuListai(View,LoginRequiredMixin):
-    # model = DarbuListas
     template_name = 'home.html'
 
     def get(self, request):

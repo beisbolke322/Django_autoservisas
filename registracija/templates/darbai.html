@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
 <h3>{{title}}</h3>
 
 <div>
@@ -62,7 +60,7 @@
                 {% else %}
                 <tr class="table-light">
                     <th scope="row">
-                        <input type="checkbox" name="checkbox" value="{{item.id}}" />
+                        <input class="form-check-input" type="checkbox" name="checkbox" value="{{item.id}}" />
                     </th>
                     <td>{{item.marke}}</td>
                     <td>{{item.modelis}}</td>
