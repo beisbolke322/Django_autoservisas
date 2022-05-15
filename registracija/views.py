@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import DarbuListas, DarboDuomenys
-
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import login, authenticate, logout 
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-class VisuDarbuListai(View):
+class VisuDarbuListai(View,LoginRequiredMixin):
     # model = DarbuListas
     template_name = 'home.html'
 
     def get(self, request):
-        x = DarbuListas.objects.all()
+        x = DarbuListas.objects.filter(user=self.request.user)
         return render(request, self.template_name, {'x': x})
     
     def post(self, request, *args, **kwargs):
@@ -27,8 +29,6 @@ def list(request, id):
     list = DarbuListas.objects.get(id=id)
     context = {"title":"{list.title}","items": list.darboduomenys_set.all(), 'sortedsav': isrikiuoti_duomenys}
     if request.method == "POST":
-        print(request.POST)
-
         if request.POST.get('save'):
             checked = request.POST.getlist('checkbox')
             for item in list.darboduomenys_set.all():
@@ -59,3 +59,26 @@ def list(request, id):
 
 def ppong(request):
     return render(request, 'ping_pong.html')
+
+def login_request(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect('uzsakymai/')
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request=request, template_name="login.html", context={"login_form":form})
+
+def logout_request(request):
+	logout(request)
+	messages.info(request, "Jūs sėkmingai atsijungėte.") 
+	return redirect("uzsakymai")
