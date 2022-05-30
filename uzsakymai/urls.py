@@ -1,10 +1,7 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('registracija.urls')),
-    path('Uzs/', include('Uzsakymai.urls')),
+    path('', views.VisiUzsakymai.as_view()),
 ]
