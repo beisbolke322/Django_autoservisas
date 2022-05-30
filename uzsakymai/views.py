@@ -18,21 +18,24 @@ class VisiUzsakymai(View):
             x = Uzsakymai.objects.all()
             return render(request, self.template_name, {'x': x})
         elif request.POST.get('submit') == 'uzsak':
-            # print(request.POST)
-
-            new_u = Uzsakymai(uzsakyta=request.POST.get('uzsak'))
+            # new_u = Uzsakymai(uzsakyta=request.POST.get('uzsak'))
             checked = request.POST.getlist('checkbox')
-            for id in checked:
-                id = int(id)
-            list = Uzsakymai.objects.get(id=id)
-            # print(Uzsakymai.objects.all(), "+++", id)
-            for item in list.objects.all():
+            # pažiūrėti ar in checked yra geriausias var, gal visus id ir žiūrėti kurie checked
+            print(request.POST)
+            for item in Uzsakymai.objects.all():
+                print(item.id)
                 if str(item.id) in checked:
-                    item.uzsakyta = True
+                    id = int(item.id)
+                    list = Uzsakymai.objects.get(id=id)
+                    if list:
+                        print(list)
+                        list.uzsakyta = True
+                    list.save()
                 else:
-                    item.uzsakyta = False
-                new_u.save()
+                    id = int(item.id)
+                    list = Uzsakymai.objects.get(id=id)
+                    list.uzsakyta = False
+                    list.save()
             x = Uzsakymai.objects.all()
-            #print(x)
             return render(request, self.template_name, {'x': x})
         
