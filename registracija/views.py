@@ -28,8 +28,6 @@ def list(request, id):
     list = DarbuListas.objects.get(id=id)
     context = {"title":"{list.title}","items": list.darboduomenys_set.all(), 'sortedsav': isrikiuoti_duomenys}
     if request.method == "POST":
-        print(request.POST)
-
         if request.POST.get('save'):
             checked = request.POST.getlist('checkbox')
             for item in list.darboduomenys_set.all():
@@ -64,16 +62,13 @@ def ppong(request):
 def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
-        print(request.POST)
         if form.is_valid():
-            print('veikia')
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                print('veikia')
                 return redirect('uzsakymai/')
             else:
                 messages.error(request,"Invalid username or password.")
